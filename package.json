@@ -1,7 +1,7 @@
 {
   "name": "pi-undo",
   "version": "1.0.0",
-  "description": "Undo/redo extension for Pi coding agent - revert file changes made by the agent",
+  "description": "Undo extension for Pi coding agent - navigate back in conversation history",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "type": "module",
@@ -15,8 +15,8 @@
     "pi-coding-agent",
     "extension",
     "undo",
-    "redo",
-    "version-control",
+    "context",
+    "navigation",
     "pi-package"
   ],
   "pi": {
