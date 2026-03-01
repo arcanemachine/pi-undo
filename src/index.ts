@@ -36,10 +36,13 @@ export default function (pi: ExtensionAPI) {
         return;
       }
 
+      // Start from the parent of the current leaf (exclude the /undo command itself)
+      const startIndex = currentIndex - 1;
+
       // Calculate target index (can't go before the first entry)
-      const targetIndex = Math.max(0, currentIndex - steps);
+      const targetIndex = Math.max(0, startIndex - steps);
       const targetEntry = branch[targetIndex];
-      const actualSteps = currentIndex - targetIndex;
+      const actualSteps = startIndex - targetIndex;
 
       await ctx.navigateTree(targetEntry.id, { summarize: false });
 
@@ -49,6 +52,8 @@ export default function (pi: ExtensionAPI) {
           `Undid ${actualSteps} step(s) (reached beginning of conversation)`,
           "info",
         );
+      } else {
+        ctx.ui.notify(`Undid ${actualSteps} step(s)`, "info");
       }
     },
   });
