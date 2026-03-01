@@ -6,7 +6,7 @@ Implement `/undo` command that allows users to back up to previous messages in t
 
 ## Core Concept
 
-Unlike file-based undo (reverting file changes), this **context undo** navigates the session tree to a previous point in the conversation. It's similar to `/tree` navigation but streamlined for the common case of "go back one step."
+The `/undo` command navigates the session tree to a previous point in the conversation. It's similar to `/tree` navigation but streamlined for the common case of "go back one step."
 
 ## Key Insight
 
