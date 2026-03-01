@@ -9,12 +9,25 @@
 import type { ExtensionAPI } from "@mariozechner/pi-coding-agent";
 
 export default function (pi: ExtensionAPI) {
-  // TODO: Implement /undo command
-  // - Get current branch via ctx.sessionManager.getBranch()
-  // - Find parent entry of current leaf
-  // - Navigate to parent via ctx.navigateTree(targetId, { summarize: false })
+  pi.registerCommand("undo", {
+    description: "Go back to the previous message in the conversation",
+    handler: async (_args, ctx) => {
+      const branch = ctx.sessionManager.getBranch();
+      const currentLeafId = ctx.sessionManager.getLeafId();
 
-  pi.on("session_start", async (_event, ctx) => {
-    ctx.ui.notify("pi-undo extension loaded", "info");
+      if (!currentLeafId || branch.length === 0) {
+        ctx.ui.notify("Nothing to undo", "warning");
+        return;
+      }
+
+      const currentIndex = branch.findIndex((e) => e.id === currentLeafId);
+      if (currentIndex <= 0) {
+        ctx.ui.notify("Nothing to undo", "warning");
+        return;
+      }
+
+      const targetEntry = branch[currentIndex - 1];
+      await ctx.navigateTree(targetEntry.id, { summarize: false });
+    },
   });
 }
