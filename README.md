@@ -1,5 +1,7 @@
 # pi-undo
 
+> WARNING: You should probably just use the built-in command `/tree` for this instead. It is much more flexible.
+
 > A simple `/undo` extension/command for Pi coding agent: Navigate back in conversation history.
 
 A plugin for [Pi](https://github.com/badlogic/pi-mono) that provides context undo functionality. Allows you to back up to previous messages in the conversation, keeping the context window clean when the agent goes in the wrong direction.
