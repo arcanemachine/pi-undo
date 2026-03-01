@@ -10,7 +10,7 @@ import type { ExtensionAPI } from "@mariozechner/pi-coding-agent";
 
 export default function (pi: ExtensionAPI) {
   pi.registerCommand("undo", {
-    description: "Go back N messages in the conversation (usage: /undo [n])",
+    description: "Go back n message(s) in the conversation (default: 1)",
     handler: async (args, ctx) => {
       const branch = ctx.sessionManager.getBranch();
       const currentLeafId = ctx.sessionManager.getLeafId();
